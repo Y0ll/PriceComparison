@@ -1,0 +1,240 @@
+html, body {
+    margin: 0;
+    color: #000000;
+    background-color: rgb(240, 240, 240);
+    height: 100%;
+    padding: 0;
+}
+
+
+form {
+
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin-left: 1%;
+	display: flex;
+    margin-top: 1%;
+
+}
+.product{
+    font-size: 15px;
+    color: #000000;
+    font-weight: 800;
+    margin-left: 1%;
+    width: 90%;
+    margin-top: 1%;
+
+}
+.main{
+    min-height: 100%;
+    /*height: 100%;*/
+    /*background: rgb(5, 111, 42);*/
+    position: relative;
+    display: flex;
+    font-family: 'Birthstone', cursive;
+    font-family: 'Roboto', sans-serif;
+
+}
+.d1{background:rgb(255, 255, 255);
+    height: 100%;
+    width: 80%;
+
+    }
+.d1 input{
+    width: 100%;
+    height: 100%;
+    font-size: 80%;
+    border: 2px solid #06a53e;
+    line-height: 100%;
+    /* border-radius: 5px;  */
+    position:relative;
+    outline: none;
+    background: #ffffff;
+    color: #000000;
+
+}
+.d1 button{
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    border: none;
+    background: #06a53e;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 80%;
+
+
+}
+.buttons{
+    display: inline-block;
+    font-family: arial,sans-serif;
+    font-size: 100%;
+    color: rgb(5, 111, 42);
+    /*text-decoration: underline rgb(5, 111, 42) 2px;*/
+    user-select: none;
+    line-height: em;
+    margin-left: 7%;
+    position: relative;
+    text-align: center;
+    border-radius: 8px;
+    outline: none;
+
+    border: 5px solid rgb(5, 111, 42);
+    border-style: solid;
+    border-color: rgb(5, 111, 42);
+    width: 80%;
+    height: 70%;
+    font-weight: 700;
+
+}
+
+/* .d1 button::before{
+    content: "\f002";
+    font-size: 16px;
+    color: #06a53e;
+} */
+
+h1 {
+    font-size: 50px;
+}
+h2{
+    text-align: center;
+}
+.leftcolumn{
+    margin-top: 1%;
+    width: 200px;
+    height: 100%;
+    /*background-color: #06a53e ;*/
+    display: flex;
+    position:relative;
+    flex-direction: column;
+    color-text: rgb(5, 111, 42)
+}
+
+.footer{
+    background-color: #000000 fixed no-repeat;
+    height: 150px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 400;
+}
+.wrapper{
+    background-color: rgb(6, 165, 62)fixed no-repeat;
+    height: 70px;
+    display: flex;
+
+
+
+}
+.end{
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color:rgb(15, 15, 15);
+    background-color: rgb(15, 15, 15);
+    text-align: left;
+    width: 100%;
+    height: 100%;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(6, 165, 62);
+    box-shadow:
+    inset -10px -10px 3px rgb(5, 111, 42);
+    width: 100%;
+    height: 100%;
+    font-size: 35px;
+    color:#cccccc;
+    font-weight: 800;
+    align-items: center;
+    justify-content:left;
+    text-shadow: 2px 2px 4px black;
+    font-family: 'Raleway', sans-serif;
+
+
+
+}
+
+.header_list{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    background-color: rgb(45, 6, 6);
+    width: 80px;
+    height: 70px;
+}
+.list{
+    list-style-type: none;
+    display: flex;
+    width: 1200px;
+    justify-content: space-around;
+    align-items: center;
+    height: 0px;
+    font-size: 20px;
+}
+
+.list__link{
+    color: white;
+    text-decoration: none;
+    padding: 5px 20px;
+
+}
+.list__link:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px white;
+}
+.content{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 150px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content__inner{
+    background-color: rgba(255, 0, 0, 0.856);
+    border: 1px white solid;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+.content__text{
+    font-size: 20px;
+}
+.contact__form{
+    display: flex;
+    flex-direction: column;
+}
+.bac{
+    height: 100%;
+    width: 13vh;
+    background-color: #06a53e;
+    margin-left: 0;
+    margin-right: auto;
+
+
+}
+
+ .button17 {
+    color: rgb(5, 111, 42);
+ }
+ .button17:hover{
+    /*background:rgb(5, 111, 42)*/
+     color: #06a53e;
+ }
+    
+/* .button17:active {
+    box-shadow:
+     inset 0 1px 3px rgba(255, 255, 255, 0.515),
+     0 1px rgba(255, 255, 255, 0.515)(1,64,13),
+     0 0 1px rgba(255, 255, 255, 0.515)(1,64,13);
+  } 
+   */
