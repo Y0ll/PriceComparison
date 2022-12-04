@@ -24,18 +24,19 @@ public class ParsController
     @Autowired
     private PriceRepository priceRepository;
 
+    public static List<Price> priceStatic;
+
 
 
     @RequestMapping(value = "/setProduct/", method = RequestMethod.POST) // установить setProduct
-    public void SetProduct(String nameProduct) throws IOException, InterruptedException {
-//        Product product = new Product();
-//        product.setNameProduct(nameProduct);
+    public List<String[]> SetProduct(String nameProduct) throws IOException, InterruptedException {
         ParsingShop parsingShop = new ParsingShop(nameProduct);
+        List<Price> prices = new ArrayList<>();
 
          Thread mvideo = new Thread(() ->
         {
             try {
-                saveInDataBase(parsingShop.parsingMVIDEO(), 1);
+                prices.add(saveInDataBase(parsingShop.parsingMVIDEO(), 1));
 
 
             } catch (IOException | InterruptedException e) {
@@ -46,7 +47,7 @@ public class ParsController
        Thread dns = new Thread(() ->
        {
            try {
-               saveInDataBase(parsingShop.parsingDNS(), 2);
+               prices.add(saveInDataBase(parsingShop.parsingDNS(), 2));
 
            } catch (IOException | InterruptedException e) {
                e.printStackTrace();
@@ -58,43 +59,46 @@ public class ParsController
         mvideo.join();
         dns.start();
         dns.join();
+
+        List<String[]> priceList = new ArrayList<>();
+
+        for(Price price : prices)
+        {
+            String[] str = new String[7];
+            str[0] = price.getProduct().getNameProduct();
+            str[1] = String.valueOf(price.getPrice());
+            str[2] = price.getCount();
+            str[3] = price.getShop().getShop();
+            str[4] = price.getProduct().getMonth().getMonth();
+            str[5] = price.getProduct().getHrefProducts();
+            str[6] = price.getProduct().getImage();
+            priceList.add(str) ;
+        }
+        return priceList;
     }
 
 
-//    @RequestMapping(value = "/setProduct/", method = RequestMethod.POST) // удалить этот метод, тестил с ним POST он не нежуен
-//    public void SetProductsssss(String nameProduct) {
-//
-//        System.out.println(nameProduct);
-//    }
+    @GetMapping("/priceSort/")
+    public List<String[]> listPriceSort()
+    {
+        Iterable<Price> prices = priceRepository.findAllByOrderByPriceAsc();
 
+        List<String[]> priceList = new ArrayList<>();
 
-//    @GetMapping("/products/")
-//    public List<Product> listProduct()
-//    {
-//        Iterable<Product> products = productRepository.findAll();
-//        List<Product> productList = new ArrayList<>();
-//        for(Product product : products)
-//        {
-//            productList.add(product);
-//        }
-//        return productList;
-//    }
-//    @GetMapping("/product/{id}")
-//    public ResponseEntity<?> product(@PathVariable int id)
-//    {
-//        Optional<Product> products = productRepository.findById(id);
-//        return ResponseEntity.ok()
-//                .header("productName", products.get().getNameProduct())
-//                .body(new InputStreamResource(new ByteArrayInputStream(products.get().getNameProduct().getBytes())));
-//    }
-
-
-//    @GetMapping("/product/{id}")
-//    public String product(@PathVariable int id)
-//    {
-//        Optional<Price> price = priceRepository.findById(id);
-//        return price.get().getShop().getShop() + " " + price.get().getProduct().getNameProduct() + " " + price.get().getPrice() + " " + price.get().getProduct().getMonth().getMonth() + " " + price.get().getCount();
-//    }
+        for(Price price : prices)
+        {
+            String[] str = new String[7];
+            str[0] = price.getProduct().getNameProduct();
+            str[1] = String.valueOf(price.getPrice());
+            str[2] = price.getCount();
+            str[3] = price.getShop().getShop();
+            str[4] = price.getProduct().getMonth().getMonth();
+            str[5] = price.getProduct().getHrefProducts();
+            str[6] = price.getProduct().getImage();
+            priceList.add(str) ;
+        }
+        return priceList;
+    }
 
 
     @GetMapping("/price/")
@@ -109,7 +113,7 @@ public class ParsController
         {
             String[] str = new String[7];
             str[0] = price.getProduct().getNameProduct();
-            str[1] = price.getPrice();
+            str[1] = String.valueOf(price.getPrice());
             str[2] = price.getCount();
             str[3] = price.getShop().getShop();
             str[4] = price.getProduct().getMonth().getMonth();
@@ -134,7 +138,7 @@ public class ParsController
 
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -161,7 +165,7 @@ public class ParsController
             if(price.getShop().getShop().equals("MVIDEO")) {
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -187,7 +191,7 @@ public class ParsController
             if(!price.getCount().equals("Товара нет в наличии")) {
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -215,7 +219,7 @@ public class ParsController
             if(price.getProduct().getMonth().getMonth().equals(df.format(calendar.getTime()))){
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -244,7 +248,7 @@ public class ParsController
             if(price.getProduct().getMonth().getMonth().equals(df.format(calendar.getTime()))){
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -281,7 +285,7 @@ public class ParsController
             if(price.getProduct().getMonth().getId() >= idDate){
                 String[] str = new String[7];
                 str[0] = price.getProduct().getNameProduct();
-                str[1] = price.getPrice();
+                str[1] = String.valueOf(price.getPrice());
                 str[2] = price.getCount();
                 str[3] = price.getShop().getShop();
                 str[4] = price.getProduct().getMonth().getMonth();
@@ -363,7 +367,7 @@ public class ParsController
 
         for(Price price: prices)
         {
-            if((price.getProduct().getIdProduct() == idProd) && (price.getPrice().equals(properties.get(1))) &&
+            if((price.getProduct().getIdProduct() == idProd) && (price.getPrice() == (Integer.valueOf(properties.get(1).split("₽")[0].replaceAll("\\s+", "")))) &&
                     ((price.getShop().getId() == newShop.getId())))
             {
                 exist = true;
@@ -371,9 +375,9 @@ public class ParsController
         }
         if(exist == false)
         {
-            newPrice.setPrice(properties.get(1));
+
+            newPrice.setPrice(Integer.valueOf(properties.get(1).split("₽")[0].replaceAll("\\s+", "")));
             newPrice.setProduct(newProduct);
-            //newPrice.setCount(1); // Доделать парсер для кол-ва товаров
             newPrice.setShop(newShop);
             try {
                 newPrice.setCount(properties.get(3));
