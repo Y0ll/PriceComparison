@@ -20,7 +20,7 @@ public class Price
 
 
 //    private int idProduct;
-    private String price;
+    private int price;
     private String count;
 
     public Product getProduct() {
@@ -50,11 +50,11 @@ public class Price
 
 
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
